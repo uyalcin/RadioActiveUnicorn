@@ -166,6 +166,7 @@ public class CharacterController : MonoBehaviour {
 			anim.SetBool ("dead", true);
 			anim.SetBool ("isBlowing", false);
 			GetComponent<SpriteRenderer> ().color = Color.white;
+			StartCoroutine (WaitADeath (2.0f));
 		}
 
 	}
@@ -220,5 +221,11 @@ public class CharacterController : MonoBehaviour {
 	{
 		if (col.transform.tag == "Plateform")
 			isGrounded = false;
+	}
+
+	private IEnumerator WaitADeath(float waitTime)
+	{
+		yield return new WaitForSeconds(waitTime);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }
