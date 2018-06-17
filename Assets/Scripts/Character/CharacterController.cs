@@ -76,6 +76,7 @@ public class CharacterController : MonoBehaviour {
 		//
 		// Jump
 		//
+		
 		float moveVertical = Input.GetAxis ("Jump");
 		float maxMoveVertical = Input.GetAxis ("MaxJump");
 
@@ -92,6 +93,8 @@ public class CharacterController : MonoBehaviour {
 					purity -= maxJumpCost;
 					if (purity <= 0f)
 						purity = 0f;
+					anim.SetBool ("powerJump", true);
+					StartCoroutine (WaitRocketJump (0.5f));
 				}
 			}
 		}
@@ -121,6 +124,11 @@ public class CharacterController : MonoBehaviour {
 			else
 				dropRadioActivity (purity);
 			dropPurity (treatGain);
+			anim.SetBool ("healing", true);
+			//GetComponent<SpriteRenderer> ().flipX = !anim.GetBool ("lastInputRight");
+		}
+		if (Input.GetAxis ("Treat") == 0f) {
+			anim.SetBool ("healing", false);
 		}
 
 		//
@@ -227,5 +235,11 @@ public class CharacterController : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(waitTime);
 		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	private IEnumerator WaitRocketJump(float waitTime)
+	{
+		yield return new WaitForSeconds(waitTime);
+		anim.SetBool ("powerJump", false);
 	}
 }

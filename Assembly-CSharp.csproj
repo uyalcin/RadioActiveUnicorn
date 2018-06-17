@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Character\CanonController.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
      <Compile Include="Assets\Scripts\Character\VacuumController.cs" />
+     <Compile Include="Assets\Scripts\Environnement\EntryController.cs" />
      <Compile Include="Assets\Scripts\Environnement\RadioactiveGrass.cs" />
      <Compile Include="Assets\Scripts\Environnement\RadioactiveMine.cs" />
      <Compile Include="Assets\Scripts\Environnement\RadioactiveWater.cs" />
