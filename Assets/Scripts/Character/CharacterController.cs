@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour {
 	public float jump = 15; // default 5
 	public float maxJump = 30;
 	public float maxJumpCost;
+	public bool isGrounded = false;
 
 	//
 	// Radioactivity gesture
@@ -78,7 +79,7 @@ public class CharacterController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Jump");
 		float maxMoveVertical = Input.GetAxis ("MaxJump");
 
-		if (rb.velocity.y <= 0f) // If the character is on the ground
+		if (isGrounded && rb.velocity.y == 0f) // If the character is on the ground
 		{ 
 			rb.AddForce (new Vector2(0f, moveVertical) * jump, ForceMode2D.Impulse);
 
@@ -155,6 +156,18 @@ public class CharacterController : MonoBehaviour {
 			pRight.SetActive (false);
 		}
 
+		//
+		// Gestion of death
+		//
+		if (radioactivity >= paliers[paliers.Count - 1]) {
+			//rb.bodyType = RigidbodyType2D.Static;
+			anim.SetBool ("lastInputRight", false);
+			anim.SetBool ("moving", false);
+			anim.SetBool ("dead", true);
+			anim.SetBool ("isBlowing", false);
+			GetComponent<SpriteRenderer> ().color = Color.white;
+		}
+
 	}
 
 	public float getRadioActivity()
@@ -195,5 +208,17 @@ public class CharacterController : MonoBehaviour {
 		purity -= n;
 		if (purity <= 0f)
 			purity = 0f;
+	}
+
+	void OnCollisionStay2D(Collision2D col)
+	{
+		if (col.transform.tag == "Plateform")
+			isGrounded = true;
+	}
+
+	void OnCollisionExit2D(Collision2D col)
+	{
+		if (col.transform.tag == "Plateform")
+			isGrounded = false;
 	}
 }

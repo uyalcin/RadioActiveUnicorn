@@ -118,6 +118,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1392923463780308, guid: eb4b1b0662b5546008cd1d0f59379cf1,
     type: 2}
   m_PrefabInternal: {fileID: 582423095}
+--- !u!114 &50334913 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114128009435699084, guid: eb4b1b0662b5546008cd1d0f59379cf1,
+    type: 2}
+  m_PrefabInternal: {fileID: 582423095}
+  m_Script: {fileID: 11500000, guid: 4a0a14dfe88674b31b03ecfde631e0a2, type: 3}
 --- !u!1001 &200482178
 Prefab:
   m_ObjectHideFlags: 0
@@ -506,16 +512,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114429223773712108, guid: 835edde9a7b9e4e8d996efc9af3083d2,
-        type: 2}
-      propertyPath: licorne
-      value: 
-      objectReference: {fileID: 50334910}
     - target: {fileID: 223584481987562750, guid: 835edde9a7b9e4e8d996efc9af3083d2,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 114429223773712108, guid: 835edde9a7b9e4e8d996efc9af3083d2,
+        type: 2}
+      propertyPath: licorne
+      value: 
+      objectReference: {fileID: 50334913}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 835edde9a7b9e4e8d996efc9af3083d2, type: 2}
   m_IsPrefabParent: 0

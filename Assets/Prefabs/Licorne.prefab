@@ -417,6 +417,7 @@ MonoBehaviour:
   jump: 15
   maxJump: 30
   maxJumpCost: 30
+  isGrounded: 0
   radioactivity: 0
   paliers: 14000000280000003c00000064000000
   purity: 100

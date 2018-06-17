@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114258133297396468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   licorne: {fileID: 0}
   purityBar: {fileID: 1040720672741294}
+  jump: {fileID: 114607604345242224}
+  canon: {fileID: 114360162393696056}
+  treat: {fileID: 114455017278992202}
 --- !u!114 &114455017278992202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,7 +436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 28.399994, y: -34.8}
+  m_AnchoredPosition: {x: 28.399994, y: -19.8}
   m_SizeDelta: {x: 36.7, y: 36.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224616713601184566
