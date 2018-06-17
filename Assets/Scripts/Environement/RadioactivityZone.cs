@@ -23,7 +23,15 @@ public class RadioactivityZone : MonoBehaviour {
 		}
 	}
 
-	public float getZoneRadius()
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            col.transform.GetComponent<CharacterController>().inRadioActivity(0f);
+        }
+    }
+
+    public float getZoneRadius()
 	{
 		return transform.localScale.x / 2f;
 	}

@@ -17,7 +17,6 @@ public class CharacterController : MonoBehaviour {
 	//
 	// Radioactivity gesture
 	//
-	public GameObject radioActivitySprites;
 	public float radioactivity = 0f;
 	private bool criticalState = false;
 	private bool isInRadioActivityZone = false;
@@ -25,7 +24,6 @@ public class CharacterController : MonoBehaviour {
 	private float intervalRadioActivity = 0f;
 
 	public List<int> paliers = new List<int>();
-	public List<Sprite> sprites = new List<Sprite> ();
 
 	//
 	// Purity Gesture
@@ -46,6 +44,8 @@ public class CharacterController : MonoBehaviour {
 	public GameObject vacuum;
 	public GameObject posLeftVacuum;
 	public GameObject posRightVacuum;
+	public GameObject pLeft;
+	public GameObject pRight;
 
 	//
 	// Canon Gestion
@@ -59,6 +59,8 @@ public class CharacterController : MonoBehaviour {
 	{
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
+		pLeft.SetActive (false);
+		pRight.SetActive (false);
 	}
 
 	void FixedUpdate()
@@ -76,12 +78,14 @@ public class CharacterController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Jump");
 		float maxMoveVertical = Input.GetAxis ("MaxJump");
 
-		if (rb.velocity.y == 0f) // If the character is on the ground
+		if (rb.velocity.y <= 0f) // If the character is on the ground
 		{ 
 			rb.AddForce (new Vector2(0f, moveVertical) * jump, ForceMode2D.Impulse);
 
 			// If we have enough purity for a max jump cost
 			if (purity >= maxJumpCost) {
+				if(maxMoveVertical == 1f)
+					rb.velocity = new Vector2(rb.velocity.x, 0f);
 				rb.AddForce (new Vector2 (0f, maxMoveVertical) * maxJump, ForceMode2D.Impulse);
 				if (maxMoveVertical > 0f) {
 					purity -= maxJumpCost;
@@ -95,17 +99,15 @@ public class CharacterController : MonoBehaviour {
 		// Check the sprite radioactivity
 		//
 		criticalState = radioactivity >= paliers [paliers.Count - 2];
-		for (int i = 0; i < sprites.Count; i++) 
-		{
-			radioActivitySprites.transform.GetChild (i).GetComponent<SpriteRenderer> ().enabled = radioactivity >= paliers [i];
-			radioActivitySprites.transform.GetChild (i).GetComponent<SpriteRenderer> ().sprite = sprites [i];
-		}
-
 		if (isInRadioActivityZone && Time.time - intervalRadioActivity >= 0.5f) 
 		{
 			intervalRadioActivity = Time.time;
 			winRadioActivity (radioActivityRate);
 		}
+
+		// CHange the color with radioactivity
+		float colorRate = 1 - radioactivity / paliers [paliers.Count - 1];
+		GetComponent<SpriteRenderer> ().color = new Color (colorRate, 1, colorRate, 1f);
 
 		//
 		// Gestion of treat
@@ -142,11 +144,16 @@ public class CharacterController : MonoBehaviour {
 		else {
 			anim.SetBool ("moving", false);
 		}
-		if (Input.GetAxis ("Vacuum") > 0f)
+		if (Input.GetAxis ("Vacuum") > 0f) {
 			anim.SetBool ("isBlowing", true);
-		else
+			// Gestion of particule
+			pLeft.SetActive(!anim.GetBool("lastInputRight"));
+			pRight.SetActive(anim.GetBool("lastInputRight"));
+		} else {
 			anim.SetBool ("isBlowing", false);
-
+			pLeft.SetActive (false);
+			pRight.SetActive (false);
+		}
 
 	}
 

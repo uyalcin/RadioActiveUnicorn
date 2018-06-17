@@ -54,7 +54,11 @@
      <Compile Include="Assets\Scripts\Character\CanonController.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
      <Compile Include="Assets\Scripts\Character\VacuumController.cs" />
+     <Compile Include="Assets\Scripts\Environement\RadioactiveGrass.cs" />
+     <Compile Include="Assets\Scripts\Environement\RadioactiveMine.cs" />
+     <Compile Include="Assets\Scripts\Environement\RadioactiveWater.cs" />
      <Compile Include="Assets\Scripts\Environement\RadioactivityZone.cs" />
+     <Compile Include="Assets\Scripts\Environement\Smoke.cs" />
      <Compile Include="Assets\Scripts\IA\AddForceWhenCreated.cs" />
      <Compile Include="Assets\Scripts\IA\ComingFromGround.cs" />
      <Compile Include="Assets\Scripts\IA\Debug\ArrowDeplacement.cs" />
